@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "446535163192",
+    "project_id": "kurdpoint-42fe9",
+    "storage_bucket": "kurdpoint-42fe9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446535163192:android:4b18c7541bfacb9ef535cd",
+        "android_client_info": {
+          "package_name": "com.example.kurdpoint"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGUdxa5zbaOq6Ww14mfoGDNWbSRO_LvY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "laravel/reverb": "*",
+        "filament/filament": "3.2"
+    }
+}
