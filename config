@@ -1,0 +1,3 @@
+Host rpi
+    HostName 10.20.11.4
+    User ubuntu

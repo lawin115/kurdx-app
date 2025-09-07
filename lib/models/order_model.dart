@@ -20,6 +20,16 @@ class Order {
     user: json['user'] != null ? User.fromJson(json['user']) : null,
       vendor: json['vendor'] == null ? null : User.fromJson(json['vendor']),
   );
+  
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'status': status,
+    'final_price': finalPrice,
+    'auction': auction.toJson(),
+    'user': user?.toJson(),
+    'vendor': vendor?.toJson(),
+  };
+  
   Order copyWith({String? status}) {
     return Order(
       id: this.id, status: status ?? this.status, finalPrice: this.finalPrice,

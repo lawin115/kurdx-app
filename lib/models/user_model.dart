@@ -11,6 +11,8 @@ class User {
   final String? vendorTerms;
   final String? profilePhotoUrl;
   final bool isFollowedByMe; // گرنگە بۆ لاپەڕەی Explore
+  final double? latitude;
+  final double? longitude;
 
   User({
     required this.id,
@@ -23,6 +25,8 @@ class User {
     this.vendorTerms,
     this.profilePhotoUrl,
     this.isFollowedByMe = false, // نرخی بنەڕەتی
+    this.latitude,
+    this.longitude,
   });
 
   // ===== چارەسەری سەرەki لێرەدایە =====
@@ -43,8 +47,14 @@ class User {
       profilePhotoUrl: json['profile_photo_url'],
       
       isFollowedByMe: json['is_followed_by_me'] ?? false,
+       latitude: double.tryParse(json['latitude']?.toString() ?? ''),
+        longitude: double.tryParse(json['longitude']?.toString() ?? ''),
     );
   }
+
+  get profileImageUrl => null;
+
+  get bio => null;
 
   // ===== функцIAی toJson-ی کامڵ =====
   Map<String, dynamic> toJson() {
@@ -60,6 +70,8 @@ class User {
       'vendor_terms': vendorTerms,
       'profile_photo_url': profilePhotoUrl,
       'is_followed_by_me': isFollowedByMe,
+       'latitude': latitude,
+    'longitude': longitude,
     };
   }
 }

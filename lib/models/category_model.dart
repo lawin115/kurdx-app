@@ -22,5 +22,14 @@ class Category {
         updatedAt: json['updated_at'],
       );
 
+ Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'slug': slug,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+      };
   get imageUrl => null;
+
+  
 }

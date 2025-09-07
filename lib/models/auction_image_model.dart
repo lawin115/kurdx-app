@@ -4,20 +4,23 @@ class AuctionImage {
 
   AuctionImage({required this.id, required this.url});
 
-factory AuctionImage.fromJson(Map<String, dynamic> json) {
-  const String baseUrl = "https://ubuntu.tail73d562.ts.net"; // Your Laravel server base URL
-  String imageUrl = json['path'].startsWith('https') 
-      ? json['path'] 
-      : '$baseUrl/storage/${json['path']}';
+  factory AuctionImage.fromJson(Map<String, dynamic> json) {
+    const String baseUrl = "https://ubuntu.tail73d562.ts.net"; // Laravel server base URL
+    String imageUrl = (json['path'] ?? '').toString().startsWith('https')
+        ? json['path']
+        : '$baseUrl/storage/${json['path']}';
 
-  // Log the image URL to verify it's correct
-  print("Generated Image URL: $imageUrl");
+    // Log the image URL to verify it's correct
+    print("Generated Image URL: $imageUrl");
 
-  return AuctionImage(
-    id: json['id'],
-    url: imageUrl,
-  );
-}
+    return AuctionImage(
+      id: json['id'] ?? 0,
+      url: imageUrl,
+    );
+  }
 
-
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'url': url,
+      };
 }

@@ -23,11 +23,10 @@ class NotificationProvider with ChangeNotifier {
   }
 
   Future<void> markAsRead(String notificationId, String token) async {
+    // 1. یەکەم جار گۆڕانکارییەکە لە UIـدا پیشان بدە (Optimistic Update)
     final index = _notifications.indexWhere((n) => n.id == notificationId);
-    if (index == -1 || _notifications[index].isRead) return;
+    if (index == -1) return;
 
-    // --- Optimistic UI Update ---
-    // 1. یەکسەر لە UIـدا دۆخەکە بگۆڕە
     _notifications[index].isRead = true;
     _calculateUnreadCount();
     notifyListeners();
@@ -64,7 +63,7 @@ class NotificationProvider with ChangeNotifier {
     notifyListeners();
   }
   
-  // функцIAیەکی یارمەتیدەر بۆ دووبارە نەبوونەوەی کۆد
+  // فункцIAیەکی یارمەتیدەر بۆ دووبارە نەبوونەوەی کۆد
   void _calculateUnreadCount() {
     _unreadCount = _notifications.where((n) => !n.isRead).length;
   }

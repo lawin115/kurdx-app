@@ -5,6 +5,8 @@ import '../providers/auth_provider.dart';
 import '../services/api_service.dart';
 import './main_screen.dart';
 import 'login_screen.dart'; // دڵنیابە ئەمە بە دروستی ئیمپۆرت کراوە
+import '../generated/l10n/app_localizations.dart';
+import '../services/localization_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -136,22 +138,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // پاشبنەمایەکی سپی پاک
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0, // بێ سێبەر بۆ شێوازێکی مۆدێرن
+        elevation: 0,
         leading: _isVerificationStep
             ? IconButton(
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.black54),
                 onPressed: () {
                   setState(() {
-                    _isVerificationStep = false; // گەڕانەوە بۆ فۆڕمی تۆمارکردن
+                    _isVerificationStep = false;
                   });
                 },
               )
             : null,
         title: Text(
-          _isVerificationStep ? 'هەژمارەکەت پشتڕاست بکەرەوە' : 'دروستکردنی هەژماری نوێ',
+          _isVerificationStep 
+              ? LocalizationService.getString(context, (l10n) => l10n.verifyAccount, 'Verify your account')
+              : LocalizationService.getString(context, (l10n) => l10n.createNewAccount, 'Create new account'),
           style: const TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -165,13 +169,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           : Form(
               key: _formKey,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 24.0), // زیادکردنی بۆشایی ئاسۆیی
+                padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 24.0),
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 400),
                   transitionBuilder: (Widget child, Animation<double> animation) {
                     return SlideTransition(
                       position: Tween<Offset>(
-                        begin: const Offset(1.0, 0.0), // جووڵە لە ڕاستەوە بۆ چەپ
+                        begin: const Offset(1.0, 0.0),
                         end: Offset.zero,
                       ).animate(animation),
                       child: child,
@@ -186,188 +190,286 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  // ===== ویجێتی فۆڕمی تۆمارکردن =====
   Widget _buildRegistrationForm() {
     return Column(
       key: const ValueKey('registrationForm'),
       crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min, // Prevent overflow
       children: [
-        // دەقی بەخێرهاتن
         Text(
-          'تۆماربە بۆ دەستپێکردن!',
+          LocalizationService.getString(context, (l10n) => l10n.registerToStart, 'Sign up to get started!'),
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: Colors.black87,
                 fontWeight: FontWeight.bold,
               ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 32),
 
-        _buildTextFormField(
+        // --- Name Field ---
+        TextFormField(
           controller: _nameController,
-          labelText: 'ناوی تەواو',
-          icon: Icons.person_outline,
-          validator: (v) => v!.isEmpty ? 'ناو نابێت بەتاڵ بێت' : null,
+          decoration: InputDecoration(
+            labelText: LocalizationService.getString(context, (l10n) => l10n.fullName, 'Full Name'),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.person_outline),
+          ),
+          validator: (value) =>
+              (value == null || value.isEmpty)
+                  ? LocalizationService.getString(context, (l10n) => l10n.nameCannotBeEmpty, 'Name cannot be empty')
+                  : null,
         ),
-        const SizedBox(height: 20),
-        _buildTextFormField(
+        const SizedBox(height: 16),
+
+        // --- Email Field ---
+        TextFormField(
           controller: _emailController,
-          labelText: 'ئیمەیڵ',
-          icon: Icons.email_outlined,
           keyboardType: TextInputType.emailAddress,
-          validator: (v) => v!.isEmpty || !v.contains('@') ? 'ئیمەیڵێکی دروست بنووسە' : null,
+          decoration: InputDecoration(
+            labelText: LocalizationService.getString(context, (l10n) => l10n.email, 'Email'),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.email_outlined),
+          ),
+          validator: (value) =>
+              (value == null || !value.contains('@'))
+                  ? LocalizationService.getString(context, (l10n) => l10n.enterValidEmail, 'Please enter a valid email')
+                  : null,
         ),
-        const SizedBox(height: 20),
-        _buildTextFormField(
+        const SizedBox(height: 16),
+
+        // --- Phone Field ---
+        TextFormField(
           controller: _phoneController,
-          labelText: 'ژمارەی تەلەفۆن',
-          icon: Icons.phone_outlined,
           keyboardType: TextInputType.phone,
-          validator: (v) => v!.isEmpty ? 'ژمارەی تەلەفۆن نابێت بەتاڵ بێت' : null,
+          decoration: InputDecoration(
+            labelText: LocalizationService.getString(context, (l10n) => l10n.phoneNumber, 'Phone Number'),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.phone_outlined),
+          ),
+          validator: (value) =>
+              (value == null || value.isEmpty)
+                  ? LocalizationService.getString(context, (l10n) => l10n.phoneCannotBeEmpty, 'Phone number cannot be empty')
+                  : null,
         ),
-        const SizedBox(height: 20),
-        _buildTextFormField(
+        const SizedBox(height: 16),
+
+        // --- Location Field ---
+        TextFormField(
           controller: _locationController,
-          labelText: 'ناونیشان (شار)',
-          icon: Icons.location_city_outlined,
-          validator: (v) => v!.isEmpty ? 'ناونیشان نابێت بەتاڵ بێت' : null,
+          decoration: InputDecoration(
+            labelText: LocalizationService.getString(context, (l10n) => l10n.address, 'Address (City)'),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.location_on_outlined),
+          ),
+          validator: (value) =>
+              (value == null || value.isEmpty)
+                  ? LocalizationService.getString(context, (l10n) => l10n.addressCannotBeEmpty, 'Address cannot be empty')
+                  : null,
         ),
-        const SizedBox(height: 20),
-        _buildTextFormField(
+        const SizedBox(height: 16),
+
+        // --- Password Field ---
+        TextFormField(
           controller: _passwordController,
-          labelText: 'وشەی نهێنی',
-          icon: Icons.lock_outline,
           obscureText: true,
-          validator: (v) => v!.length < 8 ? 'وشەی نهێنی دەبێت لە ٨ پیت کەمتر نەبێت' : null,
+          decoration: InputDecoration(
+            labelText: LocalizationService.getString(context, (l10n) => l10n.password, 'Password'),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.lock_outline),
+          ),
+          validator: (value) =>
+              (value == null || value.length < 8)
+                  ? LocalizationService.getString(context, (l10n) => l10n.passwordMinLength, 'Password must be at least 8 characters')
+                  : null,
         ),
-        const SizedBox(height: 20),
-        _buildTextFormField(
+        const SizedBox(height: 16),
+
+        // --- Confirm Password Field ---
+        TextFormField(
           controller: _confirmPasswordController,
-          labelText: 'دووبارە نووسینەوەی وشەی نهێنی',
-          icon: Icons.lock_outline,
           obscureText: true,
-          validator: (v) => v != _passwordController.text ? 'وشەی نهێنیەکان وەک یەک نین' : null,
+          decoration: InputDecoration(
+            labelText: LocalizationService.getString(context, (l10n) => l10n.confirmPassword, 'Confirm Password'),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.lock_outline),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return LocalizationService.getString(context, (l10n) => l10n.passwordMinLength, 'Password must be at least 8 characters');
+            }
+            if (value != _passwordController.text) {
+              return LocalizationService.getString(context, (l10n) => l10n.passwordsDoNotMatch, 'Passwords do not match');
+            }
+            return null;
+          },
         ),
-        const SizedBox(height: 40),
-        _buildElevatedButton(
-          onPressed: _sendOtp,
-          text: 'ناردنی کۆدی پشتڕاستکردنەوە',
-        ),
-        const SizedBox(height: 20),
-        _buildLoginLink(),
+        const SizedBox(height: 24),
+
+        // --- Error Message ---
         if (_errorMessage.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.red.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Text(
               _errorMessage,
-              style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.red),
             ),
           ),
+        if (_errorMessage.isNotEmpty) const SizedBox(height: 16),
+
+        // --- Register Button ---
+        FilledButton(
+          onPressed: _sendOtp,
+          style: FilledButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          child: Text(
+            LocalizationService.getString(context, (l10n) => l10n.sendVerificationCode, 'Send Verification Code'),
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
+
+        // --- Login Link ---
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              LocalizationService.getString(context, (l10n) => l10n.alreadyHaveAccount, 'Already have an account?'),
+              style: const TextStyle(color: Colors.black54),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+              child: Text(
+                LocalizationService.getString(context, (l10n) => l10n.loginHere, 'Login here'),
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
 
-  // ===== ویجێتی فۆڕمی پشتڕاستکردنەوە =====
   Widget _buildVerificationForm() {
-    final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 60,
-      textStyle: TextStyle(
-        fontSize: 22,
-        color: Theme.of(context).primaryColor,
-        fontWeight: FontWeight.bold,
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.2)),
-      ),
-    );
-
     return Column(
       key: const ValueKey('verificationForm'),
       crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min, // Prevent overflow
       children: [
         Text(
-          'کۆدی پشتڕاستکردنەوە بنووسە',
-          textAlign: TextAlign.center,
+          LocalizationService.getString(context, (l10n) => l10n.enterVerificationCode, 'Enter the verification code'),
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: Colors.black87,
                 fontWeight: FontWeight.bold,
               ),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'کۆدێکی ٦ ژمارەیی بۆ ژمارە تەلەفۆنەکەت نێردرا:',
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Colors.black54,
-              ),
         ),
         const SizedBox(height: 8),
         Text(
-          _phoneController.text,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        const SizedBox(height: 32),
-        Center(
-          child: Pinput(
-            length: 6,
-            controller: _otpController,
-            defaultPinTheme: defaultPinTheme,
-            focusedPinTheme: defaultPinTheme.copyWith(
-              decoration: defaultPinTheme.decoration!.copyWith(
-                border: Border.all(color: Theme.of(context).primaryColor, width: 2),
-              ),
-            ),
-            submittedPinTheme: defaultPinTheme.copyWith(
-              decoration: defaultPinTheme.decoration!.copyWith(
-                color: Theme.of(context).primaryColor.withOpacity(0.2),
-                border: Border.all(color: Theme.of(context).primaryColor),
-              ),
-            ),
-            errorPinTheme: defaultPinTheme.copyWith(
-              decoration: defaultPinTheme.decoration!.copyWith(
-                border: Border.all(color: Colors.redAccent),
-              ),
-            ),
-            validator: (value) => value!.length != 6 ? 'کۆد دەبێت ٦ ژمارە بێت' : null,
-            pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-            showCursor: true,
+          '${LocalizationService.getString(context, (l10n) => l10n.sixDigitCodeSent, 'A 6-digit code has been sent to your phone number:')} ${_phoneController.text}',
+          style: const TextStyle(
+            color: Colors.black54,
+            fontSize: 16,
           ),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),
-        _buildElevatedButton(
-          onPressed: _submitRegistration,
-          text: 'پشتڕاستکردنەوە و تۆمارکردن',
+        Pinput(
+          controller: _otpController,
+          length: 6,
+          defaultPinTheme: PinTheme(
+            width: 56,
+            height: 56,
+            textStyle: const TextStyle(
+              fontSize: 20,
+              color: Colors.black87,
+              fontWeight: FontWeight.w600,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.grey[100]!,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey[300]!),
+            ),
+          ),
+          focusedPinTheme: PinTheme(
+            width: 56,
+            height: 56,
+            textStyle: const TextStyle(
+              fontSize: 20,
+              color: Colors.black87,
+              fontWeight: FontWeight.w600,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.grey[100]!,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.blue),
+            ),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return LocalizationService.getString(context, (l10n) => l10n.codeMustBeSixDigits, 'Code must be 6 digits');
+            }
+            if (value.length != 6) {
+              return LocalizationService.getString(context, (l10n) => l10n.codeMustBeSixDigits, 'Code must be 6 digits');
+            }
+            return null;
+          },
         ),
+        const SizedBox(height: 32),
         if (_errorMessage.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.red.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Text(
               _errorMessage,
-              style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.red),
             ),
           ),
-        const SizedBox(height: 20),
-        TextButton(
-          onPressed: () {
-            // TODO: لۆجیکی دووبارە ناردنەوەی OTP جێبەجێ بکە
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('...دووبارە ناردنەوەی کۆد')),
-            );
-          },
+        if (_errorMessage.isNotEmpty) const SizedBox(height: 16),
+        FilledButton(
+          onPressed: _submitRegistration,
+          style: FilledButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
           child: Text(
-            'دووبارە ناردنەوەی کۆد',
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
+            LocalizationService.getString(context, (l10n) => l10n.verifyAndRegister, 'Verify and Register'),
+            style: const TextStyle(
+              fontSize: 16,
               fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
+        TextButton(
+          onPressed: _sendOtp,
+          child: Text(
+            LocalizationService.getString(context, (l10n) => l10n.resendCode, 'Resend code'),
+            style: const TextStyle(
+              color: Colors.blue,
+              fontSize: 16,
             ),
           ),
         ),

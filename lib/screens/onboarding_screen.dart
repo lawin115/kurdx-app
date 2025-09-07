@@ -1,86 +1,132 @@
-// lib/screens/onboarding_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './auth_handler.dart'; // لاپەڕەی پشکنینی لۆگین
+import './auth_handler.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
-  // ===== تەنها یەک функцIAی کامڵ بۆ کۆتایی هاتن =====
-  // ئەم функцIAیە هەم بۆ "Done" و هەم بۆ "Skip" کاردەکات
   Future<void> _onIntroEnd(BuildContext context) async {
-    try {
-      // 1. پاشەکەوتکردنی ئەوەی کە بەکارهێنەر لاپەڕەکەی بینیوە
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('seenOnboarding', true);
-
-      // 2. گواستنەوەی بەکارهێنەر بۆ لاپەڕەی داهاتوو
-      //    بەکارهێنانی pushReplacement بۆ ئەوەی نەتوانێت بگەڕێتەوە بۆ Onboarding
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const AuthHandler()),
-      );
-    } catch (e) {
-      print("Error saving onboarding status: $e");
-      // حاڵەتێکی یەدەگ ئەگەر هەڵەیەک ڕوویدا
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const AuthHandler()),
-      );
-    }
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('seenOnboarding', true);
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const AuthHandler()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // دیزاینی لاپەڕەکان
+    // 🎨 رەنگەکانی برند
+    const Color logoBlue = Color(0xFF2196F3);
+    const Color logoGreen = Color(0xFF4CAF50);
+    const Color accent = Color.fromARGB(255, 255, 255, 255);
+
     const pageDecoration = PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold, color: Colors.white),
-      bodyTextStyle: TextStyle(fontSize: 19.0, color: Colors.white70),
-      imagePadding: EdgeInsets.all(24),
-      pageColor: Color(0xFF1A2035), // هەمان ڕەنگی شینی تۆخ
+      titleTextStyle: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+      bodyTextStyle: TextStyle(fontSize: 18, color: Colors.white70),
+      imagePadding: EdgeInsets.only(top: 40, bottom: 20),
+      pageColor: Colors.transparent,
     );
 
-    return IntroductionScreen(
-      globalBackgroundColor: const Color(0xFF1A2035),
-      pages: [
-        PageViewModel(
-          title: "بەخێربێیت بۆ Kurd Bids",
-          body: "باشترین شوێن بۆ دۆزینەوەی مەزادی نایاب و بەشداریکردن تێیدا.",
-          image: const Icon(Icons.gavel, size: 120, color: Color(0xFFFFA726)),
-          decoration: pageDecoration,
+    Widget buildIcon(IconData icon, String emoji) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            colors: [logoBlue.withOpacity(0.9), logoGreen.withOpacity(0.9)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 10,
+              offset: const Offset(0, 6),
+            ),
+          ],
         ),
-        PageViewModel(
-          title: "نرخ زیاد بکە و ببە براوە",
-          body: "بە ئاسانی چاودێری مەزادەکان بکە و نرخەکانت زیاد بکە بۆ بردنەوە.",
-          image: const Icon(Icons.trending_up, size: 120, color: Color(0xFFFFA726)),
-          decoration: pageDecoration,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(emoji, style: const TextStyle(fontSize: 40)),
+            const SizedBox(height: 8),
+            Icon(icon, size: 60, color: Colors.white),
+          ],
         ),
-        PageViewModel(
-          title: "ئاسان و سەلامەت",
-          body: "ئێمە ئەزموونێکی سەلامەت و ئاسانت بۆ دابین دەکەین.",
-          image: const Icon(Icons.security, size: 120, color: Color(0xFFFFA726)),
-          decoration: pageDecoration,
+      );
+    }
+
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [logoBlue, logoGreen],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-      ],
-      // کاتێک دوگمەی Done دادەگیرێت، ئەم функцIAیە بانگ دەکرێت
-      onDone: () => _onIntroEnd(context),
-      // کاتێک دوگمەی Skip دادەگیرێت، هەمان функцIA بانگ دەکرێت
-      onSkip: () => _onIntroEnd(context),
-      
-      showSkipButton: true,
-      skip: const Text("پەڕین", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
-      next: const Icon(Icons.arrow_forward, color: Colors.white),
-      done: const Text("دەستپێبکە", style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
-      
-      // دیزاینی خاڵەکانی خوارەوە
-      dotsDecorator: const DotsDecorator(
-        size: Size(10.0, 10.0),
-        color: Colors.white30,
-        activeColor: Color(0xFFFFA726),
-        activeSize: Size(22.0, 10.0),
-        activeShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+      ),
+      child: IntroductionScreen(
+        globalBackgroundColor: Colors.transparent,
+        pages: [
+          PageViewModel(
+            title: "👋 بەخێربێیت بۆ BUY X",
+            body: "شوێنێکی نوێ بۆ دۆزینەوەی مەزادی نایاب و بەشداریکردن لە شوێنەکەت.",
+            image: buildIcon(Icons.gavel, "⚖️"),
+            decoration: pageDecoration,
+          ),
+          PageViewModel(
+            title: "📈 نرخ زیاد بکە و ببە براوە",
+            body: "چاودێری مەزادەکان بکە، نرخ زیاد بکە و بە ئەستێرەی بازار ببە.",
+            image: buildIcon(Icons.trending_up, "💹"),
+            decoration: pageDecoration,
+          ),
+          PageViewModel(
+            title: "🔒 ئاسان و سەلامەت",
+            body: "معامەتی سەلامەت و بە پشت‌پەنا بدەستبێنە بە بەرنامەکەمان.",
+            image: buildIcon(Icons.security, "🛡️"),
+            decoration: pageDecoration,
+          ),
+        ],
+        onDone: () => _onIntroEnd(context),
+        onSkip: () => _onIntroEnd(context),
+        showSkipButton: true,
+        skip: const Text("پەڕین", style: TextStyle(color: Colors.white)),
+        next: const Icon(Icons.arrow_forward, color: Colors.white),
+        done: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(206, 38, 255, 128),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: accent.withOpacity(0.5),
+                blurRadius: 8,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: const Text(
+            "دەستپێبکە",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
         ),
+        dotsDecorator: DotsDecorator(
+          size: const Size(10, 10),
+          color: Colors.white30,
+          activeColor: accent,
+          activeSize: const Size(22, 10),
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+        ),
+        curve: Curves.easeInOut,
       ),
     );
   }

@@ -1,0 +1,503 @@
+{
+  "@@locale": "en",
+  "appTitle": "BUY X",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home tab label"
+  },
+  "explore": "Explore",
+  "@explore": {
+    "description": "Explore tab label"
+  },
+  "auctions": "Auctions",
+  "@auctions": {
+    "description": "Auctions tab label"
+  },
+  "chats": "Chats",
+  "@chats": {
+    "description": "Chats tab label"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile tab label"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button text"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field label"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field label"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password field label"
+  },
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "description": "Forgot password link text"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Name field label"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone field label"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings menu item"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "lightTheme": "Light",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "Dark",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "systemTheme": "System",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "myOrders": "My Orders",
+  "@myOrders": {
+    "description": "My orders menu item"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications menu item"
+  },
+  "becomeVendor": "Become Vendor",
+  "@becomeVendor": {
+    "description": "Become vendor menu item"
+  },
+  "manageDrivers": "Manage Drivers",
+  "@manageDrivers": {
+    "description": "Manage drivers menu item"
+  },
+  "soldAuctions": "Sold Auctions",
+  "@soldAuctions": {
+    "description": "Sold auctions menu item"
+  },
+  "blockedUsers": "Blocked Users",
+  "@blockedUsers": {
+    "description": "Blocked users menu item"
+  },
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "description": "Edit profile menu item"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button text"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search placeholder text"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading indicator text"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error message title"
+  },
+  "noData": "No data available",
+  "@noData": {
+    "description": "No data message"
+  },
+  "noNetwork": "No internet connection",
+  "@noNetwork": {
+    "description": "No network connection message"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button text"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes button text"
+  },
+  "no": "No",
+  "@no": {
+    "description": "No button text"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button text"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  },
+  "bid": "Bid",
+  "@bid": {
+    "description": "Bid button text"
+  },
+  "price": "Price",
+  "@price": {
+    "description": "Price label"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Description label"
+  },
+  "category": "Category",
+  "@category": {
+    "description": "Category label"
+  },
+  "timeLeft": "Time Left",
+  "@timeLeft": {
+    "description": "Time left label for auctions"
+  },
+  "endTime": "End Time",
+  "@endTime": {
+    "description": "End time label"
+  },
+  "winner": "Winner",
+  "@winner": {
+    "description": "Winner label"
+  },
+  "currentBid": "Current Bid",
+  "@currentBid": {
+    "description": "Current bid label"
+  },
+  "placeBid": "Place Bid",
+  "@placeBid": {
+    "description": "Place bid button text"
+  },
+  "selectLanguage": "Select Language",
+  "@selectLanguage": {
+    "description": "Language selection dialog title"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "arabic": "العربية",
+  "@arabic": {
+    "description": "Arabic language option"
+  },
+  "kurdishSorani": "کوردی سۆرانی",
+  "@kurdishSorani": {
+    "description": "Kurdish Sorani language option"
+  },
+  "kurdishBadini": "کوردی بادینی",
+  "@kurdishBadini": {
+    "description": "Kurdish Badini language option"
+  },
+  "vendor": "Vendor",
+  "@vendor": {
+    "description": "Vendor role text"
+  },
+  "driver": "Driver",
+  "@driver": {
+    "description": "Driver role text"
+  },
+  "user": "User",
+  "@user": {
+    "description": "User role text"
+  },
+  "all": "All",
+  "@all": {
+    "description": "All tab label"
+  },
+  "sold": "Sold",
+  "@sold": {
+    "description": "Sold tab label"
+  },
+  "favorites": "Favorites",
+  "@favorites": {
+    "description": "Favorites tab label"
+  },
+  "watchlist": "Watchlist",
+  "@watchlist": {
+    "description": "Watchlist tab label"
+  },
+  "noActiveAuctions": "No active auctions",
+  "@noActiveAuctions": {
+    "description": "Message when no active auctions"
+  },
+  "nothingSoldYet": "Nothing sold yet",
+  "@nothingSoldYet": {
+    "description": "Message when nothing sold yet"
+  },
+  "noParticipation": "No participation in any auction",
+  "@noParticipation": {
+    "description": "Message when no participation in auctions"
+  },
+  "emptyWatchlist": "Watchlist is empty",
+  "@emptyWatchlist": {
+    "description": "Message when watchlist is empty"
+  },
+  "help": "Help",
+  "@help": {
+    "description": "Help menu item"
+  },
+  "welcome": "Welcome!",
+  "@welcome": {
+    "description": "Welcome greeting"
+  },
+  "welcomeBack": "Welcome back!",
+  "@welcomeBack": {
+    "description": "Welcome back greeting"
+  },
+  "loginToContinue": "Login to continue",
+  "@loginToContinue": {
+    "description": "Login prompt text"
+  },
+  "enterValidEmail": "Please enter a valid email",
+  "@enterValidEmail": {
+    "description": "Email validation message"
+  },
+  "enterPassword": "Enter password",
+  "@enterPassword": {
+    "description": "Password field prompt"
+  },
+  "incorrectEmailOrPassword": "Incorrect email or password.",
+  "@incorrectEmailOrPassword": {
+    "description": "Login error message"
+  },
+  "errorOccurred": "An error occurred, please try again.",
+  "@errorOccurred": {
+    "description": "Generic error message"
+  },
+  "registerToStart": "Sign up to get started!",
+  "@registerToStart": {
+    "description": "Registration prompt"
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": "Full name field label"
+  },
+  "nameCannotBeEmpty": "Name cannot be empty",
+  "@nameCannotBeEmpty": {
+    "description": "Name validation message"
+  },
+  "phoneNumber": "Phone Number",
+  "@phoneNumber": {
+    "description": "Phone number field label"
+  },
+  "phoneCannotBeEmpty": "Phone number cannot be empty",
+  "@phoneCannotBeEmpty": {
+    "description": "Phone validation message"
+  },
+  "address": "Address (City)",
+  "@address": {
+    "description": "Address field label"
+  },
+  "addressCannotBeEmpty": "Address cannot be empty",
+  "@addressCannotBeEmpty": {
+    "description": "Address validation message"
+  },
+  "passwordMinLength": "Password must be at least 8 characters",
+  "@passwordMinLength": {
+    "description": "Password length validation"
+  },
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Password confirmation validation"
+  },
+  "verifyAccount": "Verify your account",
+  "@verifyAccount": {
+    "description": "Account verification title"
+  },
+  "createNewAccount": "Create new account",
+  "@createNewAccount": {
+    "description": "Create account title"
+  },
+  "continueText": "Continue",
+  "@continueText": {
+    "description": "Continue button text"
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Back button text"
+  },
+  "or": "or",
+  "@or": {
+    "description": "Or connector text"
+  },
+  "dontHaveAccount": "Don't have an account?",
+  "@dontHaveAccount": {
+    "description": "Registration prompt question"
+  },
+  "createOne": "Create one",
+  "@createOne": {
+    "description": "Create account link text"
+  },
+  "sendVerificationCode": "Send Verification Code",
+  "@sendVerificationCode": {
+    "description": "Send OTP button text"
+  },
+  "enterVerificationCode": "Enter Verification Code",
+  "@enterVerificationCode": {
+    "description": "OTP form title"
+  },
+  "sixDigitCodeSent": "A 6-digit code has been sent to your phone number:",
+  "@sixDigitCodeSent": {
+    "description": "OTP instruction text"
+  },
+  "codeMustBeSixDigits": "Code must be 6 digits",
+  "@codeMustBeSixDigits": {
+    "description": "OTP validation message"
+  },
+  "verifyAndRegister": "Verify and Register",
+  "@verifyAndRegister": {
+    "description": "Final registration button"
+  },
+  "resendCode": "Resend Code",
+  "@resendCode": {
+    "description": "Resend OTP button"
+  },
+  "resendingCode": "Resending code...",
+  "@resendingCode": {
+    "description": "Resending OTP message"
+  },
+  "alreadyHaveAccount": "Already have an account?",
+  "@alreadyHaveAccount": {
+    "description": "Login link prompt"
+  },
+  "loginHere": "Login here",
+  "@loginHere": {
+    "description": "Login link text"
+  },
+  "map": "Map",
+  "@map": {
+    "description": "Map navigation label"
+  },
+  "orders": "Orders",
+  "@orders": {
+    "description": "Orders navigation label"
+  },
+  "create": "Create",
+  "@create": {
+    "description": "Create navigation label"
+  },
+  "dashboard": "Dashboard",
+  "@dashboard": {
+    "description": "Dashboard navigation label"
+  },
+  "sold": "Sold",
+  "@sold": {
+    "description": "Sold navigation label"
+  },
+  "dashboard": "Dashboard",
+  "@dashboard": {
+    "description": "Dashboard navigation label"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout menu item"
+  },
+  "driverDashboard": "Driver Dashboard",
+  "@driverDashboard": {
+    "description": "Driver dashboard title"
+  },
+  "todayStats": "Today's Stats",
+  "@todayStats": {
+    "description": "Today's statistics header"
+  },
+  "collectedAmount": "Collected",
+  "@collectedAmount": {
+    "description": "Collected amount stat"
+  },
+  "deliveredToday": "Delivered",
+  "@deliveredToday": {
+    "description": "Delivered today stat"
+  },
+  "pendingDeliveries": "Pending",
+  "@pendingDeliveries": {
+    "description": "Pending deliveries stat"
+  },
+  "performance": "Performance",
+  "@performance": {
+    "description": "Performance stat"
+  },
+  "todayTasks": "Today's Tasks",
+  "@todayTasks": {
+    "description": "Today's tasks header"
+  },
+  "tasks": "Tasks",
+  "@tasks": {
+    "description": "Tasks label"
+  },
+  "noTasks": "No tasks assigned for today.",
+  "@noTasks": {
+    "description": "No tasks message"
+  },
+  "orderFor": "Order for",
+  "@orderFor": {
+    "description": "Order for label"
+  },
+  "unknown": "Unknown",
+  "@unknown": {
+    "description": "Unknown label"
+  },
+  "shipped": "Shipped",
+  "@shipped": {
+    "description": "Shipped status"
+  },
+  "outForDelivery": "Out for Delivery",
+  "@outForDelivery": {
+    "description": "Out for delivery status"
+  },
+  "delivered": "Delivered",
+  "@delivered": {
+    "description": "Delivered status"
+  },
+  "cancelled": "Cancelled",
+  "@cancelled": {
+    "description": "Cancelled status"
+  },
+  "processing": "Processing",
+  "@processing": {
+    "description": "Processing status"
+  },
+  "pendingPayment": "Pending Payment",
+  "@pendingPayment": {
+    "description": "Pending payment status"
+  },
+  "successfully": "Successfully",
+  "@successfully": {
+    "description": "Success message"
+  },
+  "updated": "updated",
+  "@updated": {
+    "description": "Updated message"
+  }
+}

@@ -106,6 +106,7 @@ class _BecomeVendorScreenState extends State<BecomeVendorScreen> {
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min, // Prevent overflow
                   children: [
                     const Icon(Icons.storefront_outlined, size: 80, color: Colors.indigo),
                     const SizedBox(height: 16),
@@ -139,6 +140,7 @@ class _BecomeVendorScreenState extends State<BecomeVendorScreen> {
                     FormField<bool>(
                       builder: (state) {
                         return Column(
+                          mainAxisSize: MainAxisSize.min, // Prevent overflow
                           children: [
                             Row(
                               children: [

@@ -55,7 +55,7 @@ class InvoiceGenerator {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
-        pw.Text('KURD X', style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
+        pw.Text('BUY X', style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)),
         // pw.Image(logo, height: 50),
       ],
     );
