@@ -2,43 +2,50 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- ناوی بەرنامە لە iPhone -->
+    <!-- ناڤ و وەشانا ئەپلیکەیشنێ (ئۆتۆماتیکی ژ فلۆتەرێ دهێت) -->
     <key>CFBundleName</key>
-    <string>buy x</string>
-
-    <!-- Package ID (unique بێت بۆ AltStore) -->
+    <string>Buy X</string>
+    <key>CFBundleDisplayName</key>
+    <string>Buy X</string>
     <key>CFBundleIdentifier</key>
-    <string>com.example.buyx</string>
-
-    <!-- وەشانی بەرنامە -->
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-
-    <!-- Build number -->
+    <string>$(FLUTTER_BUILD_NAME)</string>
     <key>CFBundleVersion</key>
-    <string>1</string>
+    <string>$(FLUTTER_BUILD_NUMBER)</string>
 
-    <!-- Launch storyboard -->
+    <!-- ڕێکخستنێن دەستپێکێ و شاشێ -->
     <key>UILaunchStoryboardName</key>
     <string>LaunchScreen</string>
-
-    <!-- Orientation -->
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
     </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
 
-    <!-- Icons -->
-    <key>CFBundleIcons</key>
-    <dict/>
-    <key>CFBundleIcons~ipad</key>
-    <dict/>
+    <!-- دەستهەلاتا جهی (Location) -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs your location to show it on the map.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app needs your location to show it on the map.</string>
 
-    <!-- App Transport Security (Allow all for dev) -->
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
+    <!-- نۆتیفیکەیشن و Firebase -->
+    <key>FirebaseAppDelegateProxyEnabled</key>
+    <true/>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+        <string>fetch</string>
+    </array>
+
+    <!-- دەستهەلاتا شوونگرتنێ (Tracking) -->
+    <key>NSUserTrackingUsageDescription</key>
+    <string>Used for personalized notifications and analytics.</string>
 </dict>
 </plist>
