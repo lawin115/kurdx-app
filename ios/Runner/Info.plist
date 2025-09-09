@@ -2,103 +2,64 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+  <!-- App Info -->
+  <key>CFBundleDisplayName</key>
+  <string>Buy X</string>
+  <key>CFBundleName</key>
+  <string>Buy X</string>
+  <key>CFBundleIdentifier</key>
+  <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+  <key>CFBundleVersion</key>
+  <string>$(FLUTTER_BUILD_NUMBER)</string>
+  <key>CFBundleShortVersionString</key>
+  <string>$(FLUTTER_BUILD_NAME)</string>
+  <key>UILaunchStoryboardName</key>
+  <string>LaunchScreen</string>
+
+  <!-- Orientation -->
+  <key>UISupportedInterfaceOrientations</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+
+  <!-- Location Permissions -->
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>This app needs your location to show it on the map.</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>This app needs your location to show it on the map.</string>
+
+  <!-- Push Notifications / FCM -->
+  <key>FirebaseAppDelegateProxyEnabled</key>
+  <true/>
+  <key>UIBackgroundModes</key>
+  <array>
+    <string>remote-notification</string>
+    <string>fetch</string>
+  </array>
+
+  <!-- App Transport Security -->
+  <key>NSAppTransportSecurity</key>
   <dict>
-    <!-- App Info -->
-    <key>CFBundleDisplayName</key>
-    <string>Buy X</string>
-    <key>CFBundleName</key>
-    <string>Buy X</string>
-    <key>CFBundleExecutable</key>
-    <string>$(EXECUTABLE_NAME)</string>
-    <key>CFBundleIdentifier</key>
-    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-    <key>CFBundleVersion</key>
-    <string>$(FLUTTER_BUILD_NUMBER)</string>
-    <key>CFBundleShortVersionString</key>
-    <string>$(FLUTTER_BUILD_NAME)</string>
-    <key>CFBundleDevelopmentRegion</key>
-    <string>$(DEVELOPMENT_LANGUAGE)</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>LSRequiresIPhoneOS</key>
+    <key>NSAllowsArbitraryLoads</key>
     <true/>
-
-    <!-- Launch Screen -->
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
-    <key>UIMainStoryboardFile</key>
-    <string>Main</string>
-
-    <!-- Supported Orientations -->
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationPortraitUpsideDown</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-
-    <!-- Status Bar -->
-    <key>UIStatusBarHidden</key>
-    <false/>
-    <key>UIViewControllerBasedStatusBarAppearance</key>
-    <true/>
-
-    <!-- Location Permissions -->
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app needs access to your location to show your position on the map.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>This app needs access to your location to show your position on the map.</string>
-
-    <!-- Firebase / FCM -->
-    <key>FirebaseAppDelegateProxyEnabled</key>
-    <true/>
-    <key>UIBackgroundModes</key>
-    <array>
-      <string>remote-notification</string>
-      <string>fetch</string>
-    </array>
-
-    <!-- App Transport Security -->
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-    </dict>
-
-    <!-- Sign in with Apple -->
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>com.example.kurdpoint</string> <!-- Your Bundle ID -->
-        </array>
-      </dict>
-    </array>
-    <key>NSUserTrackingUsageDescription</key>
-    <string>We use your device for personalized notifications and analytics.</string>
-
-    <!-- Push Notifications permissions -->
-    <key>UIRequiredDeviceCapabilities</key>
-    <array>
-      <string>armv7</string>
-    </array>
-
-    <!-- Optional: Camera / Photo / Microphone if used -->
-    <key>NSCameraUsageDescription</key>
-    <string>Camera access is required to take profile photos or scan documents.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Photo library access is required to upload images.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Microphone access is required for audio messages or recording.</string>
   </dict>
+
+  <!-- Sign in with Apple -->
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+      </array>
+    </dict>
+  </array>
+  <key>NSUserTrackingUsageDescription</key>
+  <string>Used for personalized notifications and analytics.</string>
+</dict>
 </plist>
