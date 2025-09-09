@@ -1,58 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <!-- App Info -->
-  <key>CFBundleDisplayName</key>
-  <string>Buy X</string>
-  <key>CFBundleName</key>
-  <string>Buy X</string>
-  <key>CFBundleIdentifier</key>
-  <string>com.example.buyx</string>
-  <key>CFBundleVersion</key>
-  <string>$(FLUTTER_BUILD_NUMBER)</string>
-  <key>CFBundleShortVersionString</key>
-  <string>$(FLUTTER_BUILD_NAME)</string>
-  <key>UILaunchStoryboardName</key>
-  <string>LaunchScreen</string>
+    <!-- ناوی بەرنامە لە iPhone -->
+    <key>CFBundleName</key>
+    <string>buy x</string>
 
-  <!-- Orientation -->
-  <key>UISupportedInterfaceOrientations</key>
-  <array>
-    <string>UIInterfaceOrientationPortrait</string>
-    <string>UIInterfaceOrientationLandscapeLeft</string>
-    <string>UIInterfaceOrientationLandscapeRight</string>
-  </array>
+    <!-- Package ID (unique بێت بۆ AltStore) -->
+    <key>CFBundleIdentifier</key>
+    <string>com.example.buyx</string>
 
-  <!-- Location Permissions -->
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>This app needs your location to show it on the map.</string>
-  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>This app needs your location to show it on the map.</string>
+    <!-- وەشانی بەرنامە -->
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
 
-  <!-- App Transport Security -->
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-  </dict>
+    <!-- Build number -->
+    <key>CFBundleVersion</key>
+    <string>1</string>
 
-  <!-- URL Schemes (needed for Firebase Auth redirect / Google Sign in) -->
-  <key>CFBundleURLTypes</key>
-  <array>
+    <!-- Launch storyboard -->
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+
+    <!-- Orientation -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+
+    <!-- Icons -->
+    <key>CFBundleIcons</key>
+    <dict/>
+    <key>CFBundleIcons~ipad</key>
+    <dict/>
+
+    <!-- App Transport Security (Allow all for dev) -->
+    <key>NSAppTransportSecurity</key>
     <dict>
-      <key>CFBundleTypeRole</key>
-      <string>Editor</string>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>com.example.buyx</string>
-      </array>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
     </dict>
-  </array>
-
-  <!-- Tracking transparency -->
-  <key>NSUserTrackingUsageDescription</key>
-  <string>Used for personalized analytics.</string>
 </dict>
 </plist>
