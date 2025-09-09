@@ -5,8 +5,8 @@ import FirebaseMessaging
 import UserNotifications
 
 @UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate, UNUserNotificationCenterDelegate {
-    
+@objc class AppDelegate: FlutterAppDelegate {
+
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -15,7 +15,7 @@ import UserNotifications
         // Initialize Firebase
         FirebaseApp.configure()
         
-        // Push Notifications
+        // Notifications setup
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = self
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -32,27 +32,39 @@ import UserNotifications
         
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
-    
-    // FCM token refresh
-    override func application(_ application: UIApplication,
-                              didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+
+    override func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
         Messaging.messaging().apnsToken = deviceToken
         super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
+}
 
-    // Handle foreground notifications (iOS 10+)
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound, .badge])
+// MARK: - UNUserNotificationCenterDelegate
+@available(iOS 10.0, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    // Foreground notifications
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        if #available(iOS 14.0, *) {
+            completionHandler([.banner, .sound, .badge])
+        } else {
+            completionHandler([.alert, .sound, .badge])
+        }
     }
 
-    // Handle background notification tap
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
+    // Background notification tap
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         completionHandler()
     }
 }
