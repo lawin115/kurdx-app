@@ -1,7 +1,7 @@
 import UIKit
 import Flutter
-import Firebase // ← Import Firebase
-import FirebaseMessaging // ← بۆ FCM
+import Firebase
+import FirebaseMessaging
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate, MessagingDelegate {
@@ -11,20 +11,17 @@ import FirebaseMessaging // ← بۆ FCM
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     
-    // 1️⃣ Firebase configure
     FirebaseApp.configure()
-    
-    // 2️⃣ Register plugins
     GeneratedPluginRegistrant.register(with: self)
     
-    // 3️⃣ FCM setup
+    // Push notification permission
     if #available(iOS 10.0, *) {
         UNUserNotificationCenter.current().delegate = self
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(
             options: authOptions,
             completionHandler: { granted, error in
-                print("Push permission granted: \(granted)")
+                print("Push granted: \(granted)")
             }
         )
     } else {
@@ -33,19 +30,15 @@ import FirebaseMessaging // ← بۆ FCM
     }
     
     application.registerForRemoteNotifications()
-    
     Messaging.messaging().delegate = self
     
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
   
-  // 4️⃣ FCM token refresh
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
       print("FCM token: \(String(describing: fcmToken))")
-      // دەتوانیت token بفرستی backend
   }
   
-  // 5️⃣ Handle foreground notifications (optional)
   override func userNotificationCenter(_ center: UNUserNotificationCenter,
                                        willPresent notification: UNNotification,
                                        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
