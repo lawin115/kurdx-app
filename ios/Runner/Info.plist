@@ -52,6 +52,14 @@
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
     <string>This app needs access to your location to show your position on the map.</string>
 
+    <!-- Camera / Photos (for upload / scanner) -->
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs camera access for document scanning.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to photos for document uploads.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>This app needs access to save documents and images.</string>
+
     <!-- Push Notifications / FCM -->
     <key>FirebaseAppDelegateProxyEnabled</key>
     <true/>
@@ -61,7 +69,7 @@
       <string>fetch</string>
     </array>
 
-    <!-- App Transport Security (optional for API calls) -->
+    <!-- App Transport Security (optional) -->
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>
@@ -82,5 +90,7 @@
     </array>
     <key>NSUserTrackingUsageDescription</key>
     <string>We use your device for personalized notifications and analytics.</string>
+    <key>ASAuthorizationAppleIDUsageDescription</key>
+    <string>Sign in with Apple allows you to securely log in to Buy X.</string>
   </dict>
 </plist>
