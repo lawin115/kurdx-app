@@ -1,81 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+
+  <!-- App names -->
+  <key>CFBundleDisplayName</key>
+  <string>KurdPoint</string>
+  <key>CFBundleName</key>
+  <string>kurdpoint</string>
+
+  <!-- Identity -->
+  <key>CFBundleIdentifier</key>
+  <string>com.kurdpoint.demo1</string> <!-- یەکتەر بکە -->
+  <key>CFBundleShortVersionString</key>
+  <string>1.0.0</string>               <!-- pubspec: 1.0.0+1 -->
+  <key>CFBundleVersion</key>
+  <string>1</string>
+
+  <!-- iOS app basics -->
+  <key>CFBundleExecutable</key>
+  <string>Runner</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
+  <key>LSRequiresIPhoneOS</key>
+  <true/>
+
+  <!-- Launch screen (Flutter uses this; DO NOT set UIMainStoryboardFile) -->
+  <key>UILaunchStoryboardName</key>
+  <string>LaunchScreen</string>
+
+  <!-- Orientations -->
+  <key>UISupportedInterfaceOrientations</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+  <key>UISupportedInterfaceOrientations~ipad</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+
+  <!-- Status bar handling -->
+  <key>UIStatusBarHidden</key>
+  <false/>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <true/>
+
+  <!-- Permissions -->
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>This app needs access to your location to show your position on the map.</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>This app needs access to your location to show your position on the map.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>This app needs camera access for document scanning.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>This app needs access to photos for document uploads.</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>This app needs access to save documents and images.</string>
+  <key>NSUserTrackingUsageDescription</key>
+  <string>We use your device for personalized notifications and analytics.</string>
+
+  <!-- Firebase / background (keep minimal for AltStore) -->
+  <key>FirebaseAppDelegateProxyEnabled</key>
+  <true/>
+  <key>UIBackgroundModes</key>
+  <array>
+    <string>fetch</string>
+  </array>
+
+  <!-- Networking (dev-friendly; lock down later) -->
+  <key>NSAppTransportSecurity</key>
   <dict>
-    <key>CFBundleDisplayName</key>
-    <string>KurdPoint</string>
-    <key>CFBundleName</key>
-    <string>kurdpoint</string>
-    <key>CFBundleExecutable</key>
-    <string>Runner</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.kurdpoint.app</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
-    <key>CFBundleDevelopmentRegion</key>
-    <string>en</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>LSRequiresIPhoneOS</key>
+    <key>NSAllowsArbitraryLoads</key>
     <true/>
-    <key>UILaunchStoryboardName</key>
-    <string>LaunchScreen</string>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationPortraitUpsideDown</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>UIStatusBarHidden</key>
-    <false/>
-    <key>UIViewControllerBasedStatusBarAppearance</key>
-    <true/>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app needs access to your location to show your position on the map.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>This app needs access to your location to show your position on the map.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>This app needs camera access for document scanning.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app needs access to photos for document uploads.</string>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>This app needs access to save documents and images.</string>
-    <key>FirebaseAppDelegateProxyEnabled</key>
-    <true/>
-    <key>UIBackgroundModes</key>
-    <array>
-      <string>remote-notification</string>
-      <string>fetch</string>
-    </array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-    </dict>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>com.kurdpoint.app</string>
-        </array>
-      </dict>
-    </array>
-    <key>NSUserTrackingUsageDescription</key>
-    <string>We use your device for personalized notifications and analytics.</string>
-    <key>ASAuthorizationAppleIDUsageDescription</key>
-    <string>Sign in with Apple allows you to securely log in to KurdPoint.</string>
   </dict>
+
+  <!-- URL scheme (matches bundle id) -->
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleTypeRole</key>
+      <string>Editor</string>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>com.kurdpoint.demo1</string>
+      </array>
+    </dict>
+  </array>
+
+  <!-- Sign in with Apple (optional to keep; entitlements may be required) -->
+  <key>ASAuthorizationAppleIDUsageDescription</key>
+  <string>Sign in with Apple allows you to securely log in to KurdPoint.</string>
+
+</dict>
 </plist>
