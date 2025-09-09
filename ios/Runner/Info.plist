@@ -9,7 +9,7 @@
   <key>CFBundleName</key>
   <string>Buy X</string>
   <key>CFBundleIdentifier</key>
-  <string>Buy X</string>
+  <string>com.example.buyx</string>
   <key>CFBundleVersion</key>
   <string>$(FLUTTER_BUILD_NUMBER)</string>
   <key>CFBundleShortVersionString</key>
@@ -31,15 +31,6 @@
   <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
   <string>This app needs your location to show it on the map.</string>
 
-  <!-- Push Notifications / FCM -->
-  <key>FirebaseAppDelegateProxyEnabled</key>
-  <true/>
-  <key>UIBackgroundModes</key>
-  <array>
-    <string>remote-notification</string>
-    <string>fetch</string>
-  </array>
-
   <!-- App Transport Security -->
   <key>NSAppTransportSecurity</key>
   <dict>
@@ -47,7 +38,7 @@
     <true/>
   </dict>
 
-  <!-- Sign in with Apple -->
+  <!-- URL Schemes (needed for Firebase Auth redirect / Google Sign in) -->
   <key>CFBundleURLTypes</key>
   <array>
     <dict>
@@ -55,11 +46,13 @@
       <string>Editor</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+        <string>com.example.buyx</string>
       </array>
     </dict>
   </array>
+
+  <!-- Tracking transparency -->
   <key>NSUserTrackingUsageDescription</key>
-  <string>Used for personalized notifications and analytics.</string>
+  <string>Used for personalized analytics.</string>
 </dict>
 </plist>
