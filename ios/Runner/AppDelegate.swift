@@ -1,6 +1,6 @@
 import UIKit
 import Flutter
-import FirebaseCore
+import Firebase
 import FirebaseMessaging
 import UserNotifications
 
@@ -11,60 +11,51 @@ import UserNotifications
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        
-        // Initialize Firebase
         FirebaseApp.configure()
         
-        // Notifications setup
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: { granted, error in
-                    print("Permission granted: \(granted)")
-                }
-            )
+        // UNUserNotificationCenter delegate
+        UNUserNotificationCenter.current().delegate = self
+        
+        // Request notification authorization
+        let authOptions: UNAuthorizationOptions
+        if #available(iOS 14.0, *) {
+            authOptions = [.alert, .badge, .sound, .banner]
+        } else {
+            authOptions = [.alert, .badge, .sound]
         }
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions
+        ) { granted, error in
+            print("Permission granted: \(granted)")
+        }
+        
         application.registerForRemoteNotifications()
         
         GeneratedPluginRegistrant.register(with: self)
         
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
-
-    override func application(
-        _ application: UIApplication,
-        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-    ) {
+    
+    // MARK: - FCM Token
+    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
         super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
 }
 
-// MARK: - UNUserNotificationCenterDelegate
-@available(iOS 10.0, *)
+// UNUserNotificationCenterDelegate extension
 extension AppDelegate: UNUserNotificationCenterDelegate {
-
-    // Foreground notifications
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        willPresent notification: UNNotification,
-        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
-    ) {
-        if #available(iOS 14.0, *) {
-            completionHandler([.banner, .sound, .badge])
-        } else {
-            completionHandler([.alert, .sound, .badge])
-        }
+    // Receive foreground notifications
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
     }
-
-    // Background notification tap
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
+    
+    // Handle notification tap
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
     }
 }
