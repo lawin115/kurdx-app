@@ -230,19 +230,30 @@ Future<Map<String, dynamic>?> getAuctions({
   Future<Map<String, dynamic>?> register(Map<String, String> data) async {
     final url = Uri.parse("$_baseUrl/register");
     try {
+      print("Attempting registration with data: ${data.toString()}");
+      print("API URL: $url");
       final response = await http.post(
         url,
         headers: _getHeaders(),
         body: data,
-      );
+      ).timeout(const Duration(seconds: 30));
       
+      print("Registration response status: ${response.statusCode}");
+      print("Registration response body: ${response.body}");
       if (response.statusCode == 201 || response.statusCode == 422) {
         return json.decode(response.body);
       } else {
         print("Registration failed. Status: ${response.statusCode}, Body: ${response.body}");
       }
+    } on SocketException catch (e) {
+      print("Network error in register: $e");
+    } on TimeoutException catch (e) {
+      print("Timeout error in register: $e");
     } catch (e) {
       print("Error in register: $e");
+      if (e is FormatException) {
+        print("JSON parsing error: ${e.message}");
+      }
     }
     return null;
   }
