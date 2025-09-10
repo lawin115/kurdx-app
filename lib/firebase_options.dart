@@ -64,7 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '446535163192',
     projectId: 'kurdpoint-42fe9',
     storageBucket: 'kurdpoint-42fe9.firebasestorage.app',
-    iosBundleId: 'com.example.kurdpoint',
+    iosBundleId: 'com.kurdpoint.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -73,7 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '446535163192',
     projectId: 'kurdpoint-42fe9',
     storageBucket: 'kurdpoint-42fe9.firebasestorage.app',
-    iosBundleId: 'com.example.kurdpoint',
+    iosBundleId: 'com.kurdpoint.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
