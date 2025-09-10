@@ -199,18 +199,29 @@ Future<Map<String, dynamic>?> getAuctions({
   Future<Map<String, dynamic>?> login(String email, String password) async {
     final url = Uri.parse("$_baseUrl/login");
     try {
+      print("Attempting login with email: $email");
+      print("API URL: $url");
       final response = await http.post(
         url,
         headers: _getHeaders(),
         body: {'email': email, 'password': password},
-      );
+      ).timeout(const Duration(seconds: 30));
+      print("Login response status: ${response.statusCode}");
+      print("Login response body: ${response.body}");
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
         print("Login failed. Status: ${response.statusCode}, Body: ${response.body}");
       }
+    } on SocketException catch (e) {
+      print("Network error in login: $e");
+    } on TimeoutException catch (e) {
+      print("Timeout error in login: $e");
     } catch (e) {
       print("Error in login: $e");
+      if (e is FormatException) {
+        print("JSON parsing error: ${e.message}");
+      }
     }
     return null;
   }
